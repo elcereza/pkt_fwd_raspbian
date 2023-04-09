@@ -1,0 +1,10 @@
+[Unit]
+Description=Gateway LoRaWAN Radioenge.
+
+[Service]
+Type=simple
+ExecStart=/opt/elcereza/start.sh
+#ExecStop=/home/adailsilva/scripts/blinkShutdown.sh
+
+[Install]
+WantedBy=multi-user.target
