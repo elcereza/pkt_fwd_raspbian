@@ -1,5 +1,5 @@
-sudo apt update
-sudo apt-get update
+sudo apt update -y
+sudo apt-get update -y
 
 git clone https://github.com/kersing/lora_gateway.git
 git clone https://github.com/kersing/paho.mqtt.embedded-c.git
