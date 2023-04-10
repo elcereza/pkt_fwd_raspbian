@@ -29,7 +29,7 @@ cd mp_pkt_fwd/
 rm -rf build-pi.sh
 cp /home/pi/pkt_fwd_raspbian/build-pi.sh ./
 chmod +x ./build-pi.sh
-./build-pi.sh
+bash ./build-pi.sh
 
 cd /opt/elcereza
 cp /home/pi/pkt_fwd_raspbian/global_conf.json ./
