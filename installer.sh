@@ -54,8 +54,3 @@ rm -rf protobuf-c
 rm -rf ttn-gateway-connector
 
 exit 0
-
-
-
-
-
