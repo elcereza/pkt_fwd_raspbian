@@ -26,19 +26,19 @@ sudo apt -y install libusb-1.0-0-dev ;
 
 cd packet_forwarder
 cd mp_pkt_fwd/
-rm -rf build-pi.sh
-cp /home/pi/pkt_fwd_raspbian/build-pi.sh ./
-chmod +x ./build-pi.sh
+sudo rm -rf build-pi.sh ;
+sudo cp /home/pi/pkt_fwd_raspbian/build-pi.sh ./ ;
+sudo chmod +x ./build-pi.sh ;
 sudo ./build-pi.sh ;
 
 cd /opt/elcereza
-cp /home/pi/pkt_fwd_raspbian/global_conf.json ./
-cp /home/pi/pkt_fwd_raspbian/start.sh ./
-chmod +x start.sh
+sudo cp /home/pi/pkt_fwd_raspbian/global_conf.json ./ ;
+sudo cp /home/pi/pkt_fwd_raspbian/start.sh ./ ;
+sudo chmod +x start.sh ;
 
 cd /lib/systemd/system
-cp /home/pi/pkt_fwd_raspbian/elcereza.service ./ ;
-chmod +x elcereza.service
+sudo cp /home/pi/pkt_fwd_raspbian/elcereza.service ./ ;
+sudo chmod +x elcereza.service ;
 
 sudo systemctl daemon-reload ;
 sudo systemctl enable elcereza.service ;
@@ -46,9 +46,9 @@ sudo systemctl start elcereza.service ;
 sudo systemctl status elcereza.service ;
 
 cd
-rm -rf lora_gateway
-rm -rf packet_forwarder
-rm -rf paho.mqtt.embedded-c
-rm -rf protobuf
-rm -rf protobuf-c
-rm -rf ttn-gateway-connector
+sudo rm -rf lora_gateway
+sudo rm -rf packet_forwarder
+sudo rm -rf paho.mqtt.embedded-c
+sudo rm -rf protobuf
+sudo rm -rf protobuf-c
+sudo rm -rf ttn-gateway-connector
