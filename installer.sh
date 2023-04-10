@@ -1,5 +1,5 @@
-apt update 
-apt-get update
+apt update && sudo apt -y upgrade
+apt-get update && sudo apt-get -y upgrade
 
 git clone https://github.com/kersing/lora_gateway.git
 git clone https://github.com/kersing/paho.mqtt.embedded-c.git
@@ -36,7 +36,7 @@ cp /home/pi/pkt_fwd_raspbian/global_conf.json ./
 cp /home/pi/pkt_fwd_raspbian/start.sh ./
 chmod +x start.sh
 
-cd /lib/systemd/systemd
+cd /lib/systemd/system
 cp /home/pi/pkt_fwd_raspbian/elcereza.service ./
 chmod +x elcereza.service
 
