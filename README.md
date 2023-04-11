@@ -11,21 +11,21 @@ git clone https://github.com/kersing/protobuf-c.git
 git clone https://github.com/kersing/packet_forwarder.git
 git clone https://github.com/google/protobuf.git
 
-sudo apt -y install protobuf-compiler
-sudo apt -y install libprotobuf-dev
-sudo apt -y install libprotoc-dev
+sudo apt -y install protobuf-compiler &&
+sudo apt -y install libprotobuf-dev &&
+sudo apt -y install libprotoc-dev &&
 
-sudo apt-get -y install automake
-sudo apt -y install libtool
-sudo apt -y install autoconf
+sudo apt-get -y install automake &&
+sudo apt -y install libtool &&
+sudo apt -y install autoconf &&
 
-sudo apt -y install libftdi1
-sudo apt -y install libftdi-dev
-sudo apt -y install swig
-sudo apt -y install python-dev
-sudo apt -y search libusb
-sudo apt -y install libusb-1.0-0
-sudo apt -y install libusb-1.0-0-dev
+sudo apt -y install libftdi1 &&
+sudo apt -y install libftdi-dev &&
+sudo apt -y install swig &&
+sudo apt -y install python-dev &&
+sudo apt -y search libusb &&
+sudo apt -y install libusb-1.0-0 &&
+sudo apt -y install libusb-1.0-0-dev &&
 
 cd packet_forwarder
 cd mp_pkt_fwd/
