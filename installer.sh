@@ -47,7 +47,7 @@ sudo systemctl enable elcereza.service &&
 sudo systemctl start elcereza.service &&
 sudo systemctl status elcereza.service &&
 
-cd &&
+cd /home/pi &&
 sudo rm -rf lora_gateway &&
 sudo rm -rf packet_forwarder &&
 sudo rm -rf paho.mqtt.embedded-c &&
