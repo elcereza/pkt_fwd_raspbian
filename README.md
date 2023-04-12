@@ -1,6 +1,6 @@
 # pkt_fwd_raspbian
 
-@[AdailSilva](https://github.com/AdailSilva)
+Todo o processo de instalação do Ppacket Forwarder teve ajuda do [AdailSilva](https://github.com/AdailSilva) sem ele a curva de aprendizado e desenvolvimento seria muito mais lenta.
 
 ```
 sudo apt update
