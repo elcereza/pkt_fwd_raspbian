@@ -1,8 +1,10 @@
 [Unit]
 Description=Gateway LoRaWAN Radioenge.
+After=multi-user.target
 
 [Service]
 Type=simple
+User=pi
 ExecStart=/opt/elcereza/start.sh
 #ExecStop=/opt/elcereza/stop.sh
 
