@@ -4,6 +4,7 @@ Todo o processo de instalação do Ppacket Forwarder teve ajuda do [AdailSilva](
 
 ```
 sudo apt update
+sudo apt -y upgrade
 sudo apt-get update 
 
 git clone https://github.com/elcereza/pkt_fwd_raspbian
@@ -41,10 +42,14 @@ cd /opt/elcereza
 sudo cp /home/pi/pkt_fwd_raspbian/global_conf.json ./
 sudo cp /home/pi/pkt_fwd_raspbian/start.sh ./
 sudo chmod +x start.sh
+sudo chown pi:pi start.h
+sudo chown pi:pi mp_pkt_fwd
+sudo chown pi:pi global_conf.json
 
 cd /lib/systemd/system
 sudo cp /home/pi/pkt_fwd_raspbian/elcereza.service ./
 sudo chmod +x elcereza.service
+sudo chown pi:pi elcereza.service
 
 sudo systemctl daemon-reload
 sudo systemctl enable elcereza.service
