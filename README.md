@@ -1,10 +1,9 @@
 # pkt_fwd_raspbian
 
-Todo o processo de instalação do Ppacket Forwarder teve ajuda do [AdailSilva](https://github.com/AdailSilva) sem ele a curva de aprendizado e desenvolvimento seria muito mais lenta.
+Todo o processo de instalação do Packet Forwarder teve ajuda do [AdailSilva](https://github.com/AdailSilva) sem ele a curva de aprendizado e desenvolvimento seria muito mais lenta.
 
 ```
 sudo apt update
-sudo apt -y upgrade
 sudo apt-get update 
 
 git clone https://github.com/elcereza/pkt_fwd_raspbian
@@ -15,21 +14,21 @@ git clone https://github.com/kersing/protobuf-c.git
 git clone https://github.com/kersing/packet_forwarder.git
 git clone https://github.com/google/protobuf.git
 
-sudo apt -y install protobuf-compiler &&
-sudo apt -y install libprotobuf-dev &&
-sudo apt -y install libprotoc-dev &&
+sudo apt -y install protobuf-compiler
+sudo apt -y install libprotobuf-dev
+sudo apt -y install libprotoc-dev
 
-sudo apt-get -y install automake &&
-sudo apt -y install libtool &&
-sudo apt -y install autoconf &&
+sudo apt-get -y install automake
+sudo apt -y install libtool
+sudo apt -y install autoconf
 
-sudo apt -y install libftdi1 &&
-sudo apt -y install libftdi-dev &&
-sudo apt -y install swig &&
-sudo apt -y install python-dev &&
-sudo apt -y search libusb &&
-sudo apt -y install libusb-1.0-0 &&
-sudo apt -y install libusb-1.0-0-dev &&
+sudo apt -y install libftdi1
+sudo apt -y install libftdi-dev
+sudo apt -y install swig
+sudo apt -y install python-dev
+sudo apt -y search libusb
+sudo apt -y install libusb-1.0-0
+sudo apt -y install libusb-1.0-0-dev
 
 cd packet_forwarder
 cd mp_pkt_fwd/
@@ -55,13 +54,4 @@ sudo systemctl daemon-reload
 sudo systemctl enable elcereza.service
 sudo systemctl start elcereza.service
 sudo systemctl status elcereza.service
-
-cd /home/pi
-sudo rm -rf lora_gateway
-sudo rm -rf packet_forwarder
-sudo rm -rf paho.mqtt.embedded-c
-sudo rm -rf protobuf
-sudo rm -rf protobuf-c
-sudo rm -rf ttn-gateway-connector
-sudo rm -rf pkt_fwd_raspbian
 ```
