@@ -1,3 +1,29 @@
+echo "                                                                      "
+echo "                                                                      "
+echo "                                %@@                                   "
+echo "                                @@   (@@@@@@@@@@@@@@@@@@              "
+echo "                               @ @@@@@@@@@@@@@@@@@@@@@@@@@@           "
+echo "                            @@@@@@@@@@@@@@@@@@@@@@@@@@@               "
+echo "                          @@ @@      &@@@@@@@@@@#                     "
+echo "                        @@   .@                                       "
+echo "                       @/     @#                                      "
+echo "                      @,       @                                      "
+echo "                     @@         @/                                    "
+echo "                     @           @@                                   "
+echo "                     @             @@@@@&                             "
+echo "                    @@@@#      @@@@@@@@@@@@@@                         "
+echo "               &@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       "
+echo "             *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       "
+echo "             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@(                      "
+echo "             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       "
+echo "             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&                        "
+echo "              &@@@@@@@@@@@@@@@   @@@@@@@@@@                           "
+echo "                 @@@@@@@@@@                                           "
+echo "                                                                      "
+echo "                        elcereza.com                                  "
+echo "               Gustavo Cereza  &  Adail Silva                         "
+echo "                                                                      "
+
 sudo apt -y update &&
 sudo apt-get -y update &&
 
@@ -48,12 +74,3 @@ sudo chown pi:pi elcereza.service
 sudo systemctl daemon-reload
 sudo systemctl enable elcereza.service
 sudo systemctl start elcereza.service
-
-cd /home/pi
-sudo echo ""> ./lora_gateway
-sudo echo ""> ./packet_forwarder
-sudo echo ""> ./paho.mqtt.embedded-c
-sudo echo ""> ./protobuf
-sudo echo ""> ./protobuf-c
-sudo echo ""> ./ttn-gateway-connector
-echo "finished installation"
