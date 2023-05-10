@@ -48,7 +48,6 @@ sudo chown pi:pi elcereza.service
 sudo systemctl daemon-reload
 sudo systemctl enable elcereza.service
 sudo systemctl start elcereza.service
-sudo systemctl status elcereza.service
 
 cd /home/pi
 sudo echo ""> ./lora_gateway
