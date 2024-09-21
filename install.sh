@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "                                                                      "
 echo "                                                                      "
 echo "                                %@@                                   "
@@ -27,50 +29,41 @@ echo "                                                                      "
 sudo apt -y update &&
 sudo apt-get -y update &&
 
-git clone https://github.com/elcereza/pkt_fwd_raspbian 
-git clone https://github.com/kersing/lora_gateway.git 
-git clone https://github.com/kersing/paho.mqtt.embedded-c.git 
-git clone https://github.com/kersing/ttn-gateway-connector.git 
-git clone https://github.com/kersing/protobuf-c.git 
-git clone https://github.com/kersing/packet_forwarder.git 
-git clone https://github.com/google/protobuf.git 
+sudo mkdir -p /elcereza/LoRaWAN &&
+sudo chown pi:pi /elcereza/LoRaWAN &&
 
-sudo apt -y install protobuf-compiler &&
-sudo apt -y install libprotobuf-dev &&
-sudo apt -y install libprotoc-dev &&
+REPOS=(
+    "https://github.com/elcereza/pkt_fwd_raspbian"
+    "https://github.com/kersing/lora_gateway.git"
+    "https://github.com/kersing/paho.mqtt.embedded-c.git"
+    "https://github.com/kersing/ttn-gateway-connector.git"
+    "https://github.com/kersing/protobuf-c.git"
+    "https://github.com/kersing/packet_forwarder.git"
+    "https://github.com/google/protobuf.git"
+)
 
-sudo apt-get -y install automake &&
-sudo apt -y install libtool &&
-sudo apt -y install autoconf &&
+for repo in "${REPOS[@]}"; do
+    git clone "$repo" /elcereza/LoRaWAN/ || { echo "Erro ao clonar $repo"; exit 1; }
+done
 
-sudo apt -y install libftdi1 &&
-sudo apt -y install libftdi-dev &&
-sudo apt -y install swig &&
-sudo apt -y install python-dev &&
-sudo apt -y search libusb &&
-sudo apt -y install libusb-1.0-0 &&
-sudo apt -y install libusb-1.0-0-dev &&
+sudo apt -y install protobuf-compiler libprotobuf-dev libprotoc-dev &&
+sudo apt-get -y install automake libtool autoconf &&
+sudo apt -y install libftdi1 libftdi-dev swig python-dev libusb-1.0-0 libusb-1.0-0-dev &&
 
-cd packet_forwarder
-cd mp_pkt_fwd/
-sudo rm -rf build-pi.sh
-sudo cp /home/pi/pkt_fwd_raspbian/build-pi.sh ./
-sudo chmod +x ./build-pi.sh
-sudo ./build-pi.sh
+cd /elcereza/LoRaWAN/packet_forwarder/mp_pkt_fwd/ &&
+sudo cp /elcereza/LoRaWAN/pkt_fwd_raspbian/build-pi.sh ./ &&
+sudo chmod +x build-pi.sh &&
+sudo ./build-pi.sh || { echo "Erro durante a compilação do packet forwarder"; exit 1; }
 
-cd /opt/elcereza
-sudo cp /home/pi/pkt_fwd_raspbian/global_conf.json ./
-sudo cp /home/pi/pkt_fwd_raspbian/start.sh ./
-sudo chmod +x start.sh
-sudo chown pi:pi start.h
-sudo chown pi:pi mp_pkt_fwd
-sudo chown pi:pi global_conf.json
+sudo cp /elcereza/LoRaWAN/pkt_fwd_raspbian/{global_conf.json,start.sh} /elcereza/LoRaWAN/ &&
+sudo chmod +x /elcereza/LoRaWAN/start.sh &&
+sudo chown pi:pi /elcereza/LoRaWAN/{start.sh,mp_pkt_fwd,global_conf.json} &&
 
-cd /lib/systemd/system
-sudo cp /home/pi/pkt_fwd_raspbian/elcereza.service ./
-sudo chmod +x elcereza.service
-sudo chown pi:pi elcereza.service
+sudo cp /elcereza/LoRaWAN/pkt_fwd_raspbian/elcereza.service /lib/systemd/system/ &&
+sudo chmod +x /lib/systemd/system/elcereza.service &&
+sudo chown pi:pi /lib/systemd/system/elcereza.service &&
 
-sudo systemctl daemon-reload
-sudo systemctl enable elcereza.service
-sudo systemctl start elcereza.service
+sudo systemctl daemon-reload &&
+sudo systemctl enable elcereza.service &&
+sudo systemctl start elcereza.service &&
+sudo systemctl status elcereza.service
