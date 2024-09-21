@@ -60,7 +60,7 @@ sudo systemctl stop elcereza.service
 
 ### 6. Editar o arquivo global_conf.json:
 #### 6.1. Obter o MAC Address da rede Wi-Fi:
-O Gateway ID é derivado do MAC Address da interface de rede da Raspberry Pi. Para obter o MAC Address da rede Wi-Fi, use o seguinte comando:
+O Gateway ID é derivado do `MAC Address` da interface de rede da Raspberry Pi. Para obter o MAC Address da rede Wi-Fi, use o seguinte comando:
 ```bash
 ifconfig wlan0 | grep ether
 ```
@@ -88,7 +88,7 @@ Ajuste os campos de acordo com seu Gateway ID e localização:
 ```json
 "gateway_conf": {
     "gateway_ID": "b827eb656c123456",
-    "server_address": "router.eu.thethings.network",
+    "server_address": "au1.cloud.thethings.network",
     "serv_port_up": 1700,
     "serv_port_down": 1700,
     "serv_enabled": true,
