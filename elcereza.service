@@ -1,12 +1,18 @@
 [Unit]
-Description=Gateway LoRaWAN Radioenge.
-After=multi-user.target
+Description=LoRaWAN Gateway Service (Radioenge)
+After=network.target
 
 [Service]
 Type=simple
 User=pi
-ExecStart=/opt/elcereza/start.sh
-#ExecStop=/opt/elcereza/stop.sh
+ExecStart=/elcereza/LoRaWAN/start.sh
+# ExecStop=/elcereza/LoRaWAN/stop.sh
+Restart=on-failure
+RestartSec=10
+WorkingDirectory=/elcereza/LoRaWAN
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=lorawan-gateway
 
 [Install]
 WantedBy=multi-user.target
