@@ -59,19 +59,36 @@ sudo systemctl stop elcereza.service
 ```
 
 ### 6. Editar o arquivo global_conf.json:
-Abra o arquivo global_conf.json para editar o Gateway ID, latitude (lat) e longitude (long) conforme a localização física do seu gateway.
+#### 6.1. Obter o MAC Address da rede Wi-Fi:
+O Gateway ID é derivado do MAC Address da interface de rede da Raspberry Pi. Para obter o MAC Address da rede Wi-Fi, use o seguinte comando:
+```bash
+ifconfig wlan0 | grep ether
+```
+A saída será algo semelhante a:
+```bash
+ether b8:27:eb:12:34:56  txqueuelen 1000  (Ethernet)
+```
+O MAC Address neste exemplo é b8:27:eb:12:34:56. Para criar o Gateway ID, siga as etapas abaixo:
+
+Pegue os 3 primeiros bytes do MAC Address (b8:27:eb).
+Adicione o valor fixo 656C após os 3 primeiros bytes.
+Pegue os 3 últimos bytes do MAC Address (12:34:56).
+O resultado será: b827eb656c123456.
+
+#### 6.2. Modificar o arquivo global_conf.json:
+Agora que você tem o Gateway ID, abra o arquivo global_conf.json para editar o Gateway ID, latitude (lat) e longitude (long) conforme a localização física do seu gateway.
 
 Para editar o arquivo, use um editor de texto como o nano:
 
 ```bash
 sudo nano /elcereza/LoRaWAN/global_conf.json
 ```
+Ajuste os campos de acordo com seu Gateway ID e localização:
 
-Ajuste os campos:
 ```json
 "gateway_conf": {
-    "gateway_ID": "XXXXXX656CXXXXXX",
-    "server_address": "au1.cloud.thethings.network",
+    "gateway_ID": "b827eb656c123456",
+    "server_address": "router.eu.thethings.network",
     "serv_port_up": 1700,
     "serv_port_down": 1700,
     "serv_enabled": true,
@@ -80,7 +97,7 @@ Ajuste os campos:
     "ref_altitude": Z
 }
 ```
-gateway_ID: Substitua pelo ID exclusivo do seu gateway.
+gateway_ID: Insira o Gateway ID gerado com base no MAC Address da sua Raspberry Pi.
 ref_latitude: Insira a latitude da localização do gateway.
 ref_longitude: Insira a longitude da localização do gateway.
 ref_altitude: Insira a altitude da localização (em metros, opcional).
