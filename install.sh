@@ -57,9 +57,11 @@ sudo mkdir /elcereza/LoRaWAN
 sudo chmod +x /elcereza/LoRaWAN
 sudo chown pi:pi /elcereza/LoRaWAN
 
-git clone https://github.com/kersing/packet_forwarder.git &&
-sudo mv ./packet_forwarder/* /elcereza/LoRaWAN/ &&
-sudo rm -rf ./packet_forwarder &&
+#git clone https://github.com/kersing/packet_forwarder.git &&
+#sudo mv ./packet_forwarder/* /elcereza/LoRaWAN/ &&
+#sudo rm -rf ./packet_forwarder &&
+
+sudo cp ./mp_pkt_fwd /elcereza/LoRaWAN/ 
 
 sudo apt -y install protobuf-compiler libprotobuf-dev libprotoc-dev &&
 sudo apt-get -y install automake libtool autoconf &&
