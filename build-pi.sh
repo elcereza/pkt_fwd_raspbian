@@ -3,7 +3,7 @@
 # Build script for Raspberry Pi based on resin build script
 #
 
-INSTALL_DIR="/opt/elcereza"
+INSTALL_DIR="/elcereza/LoRaWAN"
 
 mkdir -p $INSTALL_DIR/dev
 cd $INSTALL_DIR/dev
