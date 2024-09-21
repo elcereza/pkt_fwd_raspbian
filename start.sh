@@ -41,5 +41,5 @@ sleep 3
 #PATHEXEC=/opt/LoRa/packet_forwarder/lora_pkt_fwd
 #NAMEEXEC=lora_pkt_fwd
 #start-stop-daemon --start -m --pidfile $PIDFILE  --chdir $PATHEXEC --exec $PATHEXEC/lora_pkt_fwd
-cd /opt/elcereza
+cd /elcereza/LoRaWAN
 ./mp_pkt_fwd
