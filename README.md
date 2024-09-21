@@ -15,7 +15,7 @@ Este guia rápido irá te mostrar como instalar e configurar o gateway LoRaWAN d
 
 ## Requisitos
 
-- Raspberry Pi com Raspbian instalado
+- Raspberry Pi 3 ou equivalente com Raspbian instalado
 - Acesso à internet na Raspberry Pi
 - Conexão física ao gateway LoRaWAN da Radioenge
 
@@ -37,14 +37,14 @@ cd pkt_fwd_raspbian
 ```
 
 ### 3. Ajustar permissões do script de instalação:
-Torne o script install.sh executável e ajuste as permissões para o usuário pi:
+Torne o script `install.sh` executável e ajuste as permissões para o usuário pi:
 
 ```bash
 sudo chmod +x install.sh
 sudo chown pi:pi install.sh
 ```
 ### 4. Executar o script de instalação:
-Inicie o processo de instalação executando o script install.sh:
+Inicie o processo de instalação executando o script `install.sh`:
 
 ```bash
 sudo ./install.sh
@@ -52,7 +52,7 @@ sudo ./install.sh
 Este script irá configurar os componentes necessários para o funcionamento do gateway LoRaWAN.
 
 ### 5. Parar o serviço elcereza antes de editar as configurações:
-Antes de modificar o arquivo de configuração, pare o serviço elcereza para garantir que as alterações sejam aplicadas corretamente:
+Antes de modificar o arquivo de configuração, pare o `serviço elcereza` para garantir que as alterações sejam aplicadas corretamente:
 
 ```bash
 sudo systemctl stop elcereza.service
@@ -68,15 +68,15 @@ A saída será algo semelhante a:
 ```bash
 ether b8:27:eb:12:34:56  txqueuelen 1000  (Ethernet)
 ```
-O MAC Address neste exemplo é b8:27:eb:12:34:56. Para criar o Gateway ID, siga as etapas abaixo:
+O MAC Address neste exemplo é `b8:27:eb:12:34:56`. Para criar o Gateway ID, siga as etapas abaixo:
 
-Pegue os 3 primeiros bytes do MAC Address (b8:27:eb).
-Adicione o valor fixo 656C após os 3 primeiros bytes.
-Pegue os 3 últimos bytes do MAC Address (12:34:56).
-O resultado será: b827eb656c123456.
+Pegue os 3 primeiros bytes do MAC Address `(b8:27:eb)`.
+Adicione o valor fixo `656C` após os 3 primeiros bytes.
+Pegue os 3 últimos bytes do MAC Address `(12:34:56)`.
+O resultado será: `b827eb656c123456`.
 
 #### 6.2. Modificar o arquivo global_conf.json:
-Agora que você tem o Gateway ID, abra o arquivo global_conf.json para editar o Gateway ID, latitude (lat) e longitude (long) conforme a localização física do seu gateway.
+Agora que você tem o `Gateway ID`, abra o arquivo `global_conf.json` para editar o Gateway ID, `latitude (lat)` e `longitude (long)` conforme a localização física do seu gateway `(se não tiver GPS)`. Caso sua versão de gateway tenha o GPS, desabilite o `fake_gps`.
 
 Para editar o arquivo, use um editor de texto como o nano:
 
@@ -97,19 +97,19 @@ Ajuste os campos de acordo com seu Gateway ID e localização:
     "ref_altitude": Z
 }
 ```
-gateway_ID: Insira o Gateway ID gerado com base no MAC Address da sua Raspberry Pi.
-ref_latitude: Insira a latitude da localização do gateway.
-ref_longitude: Insira a longitude da localização do gateway.
-ref_altitude: Insira a altitude da localização (em metros, opcional).
-Salve o arquivo (Ctrl + O, depois pressione Enter) e feche o editor (Ctrl + X).
+`gateway_ID`: Insira o Gateway ID gerado com base no MAC Address da sua Raspberry Pi.
+`ref_latitude`: Insira a latitude da localização do gateway.
+`ref_longitude`: Insira a longitude da localização do gateway.
+`ref_altitude`: Insira a altitude da localização (em metros, opcional).
+Salve o arquivo (`Ctrl + O`, depois `pressione Enter`) e feche o editor (`Ctrl + X`).
 
 ### 7. Reiniciar o serviço elcereza:
-Após salvar as alterações no arquivo de configuração, reinicie o serviço elcereza:
+Após salvar as alterações no arquivo de configuração, `reinicie o serviço elcereza`:
 
 ```bash
 sudo systemctl start elcereza.service
 ```
-Verifique se o LED verde no gateway acende, indicando que ele está em funcionamento.
+`Verifique se o LED verde no gateway acende`, indicando que ele está em funcionamento.
 
 ### 8. Verificar o status do serviço elcereza:
 Para confirmar que o serviço foi iniciado corretamente, use o comando abaixo para verificar o status:
@@ -117,11 +117,11 @@ Para confirmar que o serviço foi iniciado corretamente, use o comando abaixo pa
 ```bash
 sudo systemctl status elcereza.service
 ```
-Se o serviço estiver rodando corretamente, a saída deve exibir algo semelhante a "active (running)".
+Se o serviço estiver rodando corretamente, a saída deve exibir algo semelhante a `active (running)`.
 
 #### 8.1 Troubleshooting
 Caso o LED verde não acenda, verifique os logs do serviço para diagnosticar possíveis problemas:
 ```bash
 sudo journalctl -u elcereza.service
 ```
-Certifique-se de que o gateway está conectado corretamente à Raspberry Pi e que todas as dependências foram instaladas corretamente durante a execução do install.sh.
+Certifique-se de que o gateway está conectado corretamente à Raspberry Pi e que todas as dependências foram instaladas corretamente durante a execução do `install.sh`.
