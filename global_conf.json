@@ -200,7 +200,7 @@
 
     "gateway_conf": {
         /* change with default server address/ports, or overwrite in local_conf.json */
-        "gateway_ID": "XXXXXXFFFEXXXXXX",
+        "gateway_ID": "XXXXXX656CXXXXXX",
         /* Systems (set logger to true for logs per (!) packet) */
         "gps": false,
         "beacon": false,
