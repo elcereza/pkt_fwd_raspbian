@@ -1,57 +1,110 @@
-# pkt_fwd_raspbian
+# Instalação do Gateway LoRaWAN da Radioenge no Raspbian
 
-Todo o processo de instalação do Packet Forwarder teve ajuda do [AdailSilva](https://github.com/AdailSilva) sem ele a curva de aprendizado e desenvolvimento seria muito mais lenta.
+Se você ainda não possui o Gateway LoRaWAN da Radioenge, pode adquirir o modelo desejado pelos links abaixo:
 
+- **Gateway LoRaWAN da Radioenge (COM GPS)**: [Adquirir no Mercado Livre](https://mercadolivre.com/sec/2bjyVGK)
+- **Gateway LoRaWAN da Radioenge (SEM GPS)**: [Adquirir no Mercado Livre](https://mercadolivre.com/sec/1qDmBH6)
+
+Se você não está familiarizado com o Gateway LoRaWAN da Radioenge ou está procurando um tutorial mais detalhado sobre o que ele faz e como funciona, confira o link abaixo:
+
+👉 [Tutorial Completo do Gateway LoRaWAN da Radioenge](https://elcereza.com/gateway-lorawan-da-radioenge-tutorial-completo/)
+
+---
+
+Este guia rápido irá te mostrar como instalar e configurar o gateway LoRaWAN da Radioenge em uma Raspberry Pi com Raspbian. O processo inclui clonagem do repositório, configuração de permissões, execução do script de instalação e ajustes das configurações de localização no arquivo `global_conf.json`.
+
+## Requisitos
+
+- Raspberry Pi com Raspbian instalado
+- Acesso à internet na Raspberry Pi
+- Conexão física ao gateway LoRaWAN da Radioenge
+
+## Passos de Instalação
+
+### 1. Clonar o repositório com o pacote de instalação:
+
+Abra o terminal e execute o comando abaixo para clonar o repositório que contém os arquivos necessários para configurar o gateway LoRaWAN:
+
+```bash
+sudo git clone https://github.com/elcereza/pkt_fwd_raspbian
 ```
-sudo apt update
-sudo apt-get update 
 
-git clone https://github.com/elcereza/pkt_fwd_raspbian
-git clone https://github.com/kersing/lora_gateway.git
-git clone https://github.com/kersing/paho.mqtt.embedded-c.git
-git clone https://github.com/kersing/ttn-gateway-connector.git
-git clone https://github.com/kersing/protobuf-c.git
-git clone https://github.com/kersing/packet_forwarder.git
-git clone https://github.com/google/protobuf.git
+### 2. Acessar o diretório clonado:
+Após clonar o repositório, entre no diretório `pkt_fwd_raspbian`:
 
-sudo apt -y install protobuf-compiler
-sudo apt -y install libprotobuf-dev
-sudo apt -y install libprotoc-dev
+```bash
+cd pkt_fwd_raspbian
+```
 
-sudo apt-get -y install automake
-sudo apt -y install libtool
-sudo apt -y install autoconf
+### 3. Ajustar permissões do script de instalação:
+Torne o script install.sh executável e ajuste as permissões para o usuário pi:
 
-sudo apt -y install libftdi1
-sudo apt -y install libftdi-dev
-sudo apt -y install swig
-sudo apt -y install python-dev
-sudo apt -y search libusb
-sudo apt -y install libusb-1.0-0
-sudo apt -y install libusb-1.0-0-dev
+```bash
+sudo chmod +x install.sh
+sudo chown pi:pi install.sh
+```
+### 4. Executar o script de instalação:
+Inicie o processo de instalação executando o script install.sh:
 
-cd packet_forwarder
-cd mp_pkt_fwd/
-sudo rm -rf build-pi.sh
-sudo cp /home/pi/pkt_fwd_raspbian/build-pi.sh ./
-sudo chmod +x ./build-pi.sh
-sudo ./build-pi.sh
+```bash
+sudo ./install.sh
+```
+Este script irá configurar os componentes necessários para o funcionamento do gateway LoRaWAN.
 
-cd /opt/elcereza
-sudo cp /home/pi/pkt_fwd_raspbian/global_conf.json ./
-sudo cp /home/pi/pkt_fwd_raspbian/start.sh ./
-sudo chmod +x start.sh
-sudo chown pi:pi start.h
-sudo chown pi:pi mp_pkt_fwd
-sudo chown pi:pi global_conf.json
+### 5. Parar o serviço elcereza antes de editar as configurações:
+Antes de modificar o arquivo de configuração, pare o serviço elcereza para garantir que as alterações sejam aplicadas corretamente:
 
-cd /lib/systemd/system
-sudo cp /home/pi/pkt_fwd_raspbian/elcereza.service ./
-sudo chmod +x elcereza.service
-sudo chown pi:pi elcereza.service
+```bash
+sudo systemctl stop elcereza.service
+```
 
-sudo systemctl daemon-reload
-sudo systemctl enable elcereza.service
+### 6. Editar o arquivo global_conf.json:
+Abra o arquivo global_conf.json para editar o Gateway ID, latitude (lat) e longitude (long) conforme a localização física do seu gateway.
+
+Para editar o arquivo, use um editor de texto como o nano:
+
+```bash
+sudo nano /elcereza/LoRaWAN/global_conf.json
+```
+
+Ajuste os campos:
+```json
+"gateway_conf": {
+    "gateway_ID": "XXXXXX656CXXXXXX",
+    "server_address": "au1.cloud.thethings.network",
+    "serv_port_up": 1700,
+    "serv_port_down": 1700,
+    "serv_enabled": true,
+    "ref_latitude": X.XXXXX,
+    "ref_longitude": Y.YYYYY,
+    "ref_altitude": Z
+}
+```
+gateway_ID: Substitua pelo ID exclusivo do seu gateway.
+ref_latitude: Insira a latitude da localização do gateway.
+ref_longitude: Insira a longitude da localização do gateway.
+ref_altitude: Insira a altitude da localização (em metros, opcional).
+Salve o arquivo (Ctrl + O, depois pressione Enter) e feche o editor (Ctrl + X).
+
+### 7. Reiniciar o serviço elcereza:
+Após salvar as alterações no arquivo de configuração, reinicie o serviço elcereza:
+
+```bash
 sudo systemctl start elcereza.service
+```
+Verifique se o LED verde no gateway acende, indicando que ele está em funcionamento.
+
+### 8. Verificar o status do serviço elcereza:
+Para confirmar que o serviço foi iniciado corretamente, use o comando abaixo para verificar o status:
+
+```bash
 sudo systemctl status elcereza.service
 ```
+Se o serviço estiver rodando corretamente, a saída deve exibir algo semelhante a "active (running)".
+
+#### 8.1 Troubleshooting
+Caso o LED verde não acenda, verifique os logs do serviço para diagnosticar possíveis problemas:
+```bash
+sudo journalctl -u elcereza.service
+```
+Certifique-se de que o gateway está conectado corretamente à Raspberry Pi e que todas as dependências foram instaladas corretamente durante a execução do install.sh.
