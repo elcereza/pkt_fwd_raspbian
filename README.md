@@ -1,13 +1,15 @@
 # Instalação do Gateway LoRaWAN da Radioenge no Raspbian
 
-Se você ainda não possui o Gateway LoRaWAN da Radioenge, pode adquirir o modelo desejado pelos links abaixo:
+Se você ainda não possui o Gateway LoRaWAN da Radioenge nem o módulo, poderá adquiri-los nos links abaixo:
+- **Gateway LoRaWAN da Radioenge (COM GPS)**: [Mercado Livre](https://mercadolivre.com/sec/2bjyVGK)
+- **Gateway LoRaWAN da Radioenge (SEM GPS)**: [Mercado Livre](https://mercadolivre.com/sec/1qDmBH6)
+- **Módulo LoRaWAN Radioenge**: [Mercado Livre](https://tago.io?fpr=elcereza) ou [Amazon](https://amzn.to/3SwzZdC)
 
-- **Gateway LoRaWAN da Radioenge (COM GPS)**: [Adquirir no Mercado Livre](https://mercadolivre.com/sec/2bjyVGK)
-- **Gateway LoRaWAN da Radioenge (SEM GPS)**: [Adquirir no Mercado Livre](https://mercadolivre.com/sec/1qDmBH6)
-
-Se você não está familiarizado com o Gateway LoRaWAN da Radioenge ou está procurando um tutorial mais detalhado sobre o que ele faz e como funciona, confira o link abaixo:
-
-👉 [Tutorial Completo do Gateway LoRaWAN da Radioenge](https://elcereza.com/gateway-lorawan-da-radioenge-tutorial-completo/)
+Recomendações:
+- [Tutorial Completo do Gateway LoRaWAN da Radioenge](https://elcereza.com/gateway-lorawan-da-radioenge-tutorial-completo)
+- [Módulo LoRaWAN da Radioenge Tutorial Completo](https://elcereza.com/modulo-lorawan-da-radioenge-tutorial-completo/)
+- [The Things Network Primeiros Passos](https://elcereza.com/the-things-network-primeiros-passos/)
+- [Plataforma para IoT TagoIO](https://tago.io?fpr=elcereza)
 
 ---
 
@@ -15,9 +17,10 @@ Este guia rápido irá te mostrar como instalar e configurar o gateway LoRaWAN d
 
 ## Requisitos
 
-- Raspberry Pi 3 ou equivalente com Raspbian instalado
-- Acesso à internet na Raspberry Pi
-- Conexão física ao gateway LoRaWAN da Radioenge
+- Raspberry Pi 3 ou equivalente com Raspbian instalado;
+- Acesso à internet na Raspberry Pi;
+- Conexão física ao gateway LoRaWAN da Radioenge;
+- Conta na The Things Network.
 
 ## Passos de Instalação
 
