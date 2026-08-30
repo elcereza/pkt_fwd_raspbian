@@ -1,0 +1,18 @@
+[Unit]
+Description=El Cereza LoRaWAN SX1301 Gateway
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/elcereza-lorawan
+WorkingDirectory=/elcereza/LoRaWAN
+ExecStart=/elcereza/LoRaWAN/start.sh
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=elcereza-lorawan-sx1301
+
+[Install]
+WantedBy=multi-user.target
